@@ -437,10 +437,13 @@ std::vector<OptionHandler*> OptionHandlerFactory::createOptionHandlers()
     op->setChangeGlobalOption(true);
     handlers.push_back(op);
   }
+  
+  
+//*********************************_MAX_CONNECTION_PER_SERVER_***************************************//
   {
     OptionHandler* op(new NumberOptionHandler(PREF_MAX_CONNECTION_PER_SERVER,
                                               TEXT_MAX_CONNECTION_PER_SERVER,
-                                              "1", 1, 99999, 'x'));
+                                              "1", 1, -1, 'x'));
     op->addTag(TAG_BASIC);
     op->addTag(TAG_FTP);
     op->addTag(TAG_HTTP);
@@ -449,6 +452,9 @@ std::vector<OptionHandler*> OptionHandlerFactory::createOptionHandlers()
     op->setChangeOptionForReserved(true);
     handlers.push_back(op);
   }
+//*********************************_MAX_CONNECTION_PER_SERVER_***************************************//
+  
+  
   {
     OptionHandler* op(new UnitNumberOptionHandler(
         PREF_MAX_DOWNLOAD_LIMIT, TEXT_MAX_DOWNLOAD_LIMIT, "0", 0));
@@ -499,9 +505,12 @@ std::vector<OptionHandler*> OptionHandlerFactory::createOptionHandlers()
     op->setChangeOptionForReserved(true);
     handlers.push_back(op);
   }
+  
+  
+//*********************************_SPLIT_SIZE_***************************************//
   {
     OptionHandler* op(new UnitNumberOptionHandler(
-        PREF_MIN_SPLIT_SIZE, TEXT_MIN_SPLIT_SIZE, "20M", 1_m, 1_g, 'k'));
+        PREF_MIN_SPLIT_SIZE, TEXT_MIN_SPLIT_SIZE, "1M", 1, -1, 'k'));
     op->addTag(TAG_BASIC);
     op->addTag(TAG_FTP);
     op->addTag(TAG_HTTP);
@@ -510,6 +519,9 @@ std::vector<OptionHandler*> OptionHandlerFactory::createOptionHandlers()
     op->setChangeOptionForReserved(true);
     handlers.push_back(op);
   }
+//*********************************_SPLIT_SIZE_***************************************//
+  
+  
 #ifdef ENABLE_SSL
   {
     OptionHandler* op(new ParameterOptionHandler(
@@ -969,9 +981,12 @@ std::vector<OptionHandler*> OptionHandlerFactory::createOptionHandlers()
     op->addTag(TAG_HTTP);
     handlers.push_back(op);
   }
+  
+  
+//*********************************_SPLIT_NUM_***************************************//
   {
     OptionHandler* op(
-        new NumberOptionHandler(PREF_SPLIT, TEXT_SPLIT, "5", 1, -1, 's'));
+        new NumberOptionHandler(PREF_SPLIT, TEXT_SPLIT, "1", 1, -1, 's'));
     op->addTag(TAG_BASIC);
     op->addTag(TAG_FTP);
     op->addTag(TAG_HTTP);
@@ -980,6 +995,9 @@ std::vector<OptionHandler*> OptionHandlerFactory::createOptionHandlers()
     op->setChangeOptionForReserved(true);
     handlers.push_back(op);
   }
+//*********************************_SPLIT_NUM_***************************************//
+  
+  
   {
     OptionHandler* op(new NumberOptionHandler(PREF_STARTUP_IDLE_TIME,
                                               NO_DESCRIPTION, "10", 1, 60));
@@ -1869,6 +1887,9 @@ std::vector<OptionHandler*> OptionHandlerFactory::createOptionHandlers()
     op->addTag(TAG_BITTORRENT);
     handlers.push_back(op);
   }
+  
+  
+//*********************************_SEED_TIME_***************************************//
   {
     OptionHandler* op(new FloatNumberOptionHandler(
         PREF_SEED_TIME, TEXT_SEED_TIME, NO_DEFAULT_VALUE, 0));
@@ -1878,15 +1899,21 @@ std::vector<OptionHandler*> OptionHandlerFactory::createOptionHandlers()
     op->setChangeOptionForReserved(true);
     handlers.push_back(op);
   }
+  
+//*********************************_SEED_CONFIG_***************************************//
+
   {
     OptionHandler* op(new FloatNumberOptionHandler(
-        PREF_SEED_RATIO, TEXT_SEED_RATIO, "1.0", 0.0));
+        PREF_SEED_RATIO, TEXT_SEED_RATIO, "0.0", 0.0));
     op->addTag(TAG_BITTORRENT);
     op->setInitialOption(true);
     op->setChangeGlobalOption(true);
     op->setChangeOptionForReserved(true);
     handlers.push_back(op);
   }
+//*********************************_SEED_RATE_***************************************//  
+  
+  
   {
     OptionHandler* op(new LocalFilePathOptionHandler(
         PREF_TORRENT_FILE, TEXT_TORRENT_FILE, NO_DEFAULT_VALUE, false, 'T'));

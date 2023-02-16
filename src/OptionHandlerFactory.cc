@@ -1904,7 +1904,7 @@ std::vector<OptionHandler*> OptionHandlerFactory::createOptionHandlers()
 
   {
     OptionHandler* op(new FloatNumberOptionHandler(
-        PREF_SEED_RATIO, TEXT_SEED_RATIO, "0.0", 0.0));
+        PREF_SEED_RATIO, TEXT_SEED_RATIO, "0.1", 0.0));
     op->addTag(TAG_BITTORRENT);
     op->setInitialOption(true);
     op->setChangeGlobalOption(true);
